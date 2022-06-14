@@ -6,7 +6,7 @@ class ItemPageDetailView2 extends StatelessWidget {
 
   const ItemPageDetailView2({
     Key itkey,
-    @required this.mdkModel,
+    @required this.itModel,
   }) : super(key: itkey);
 
   Widget build(BuildContext context) {
