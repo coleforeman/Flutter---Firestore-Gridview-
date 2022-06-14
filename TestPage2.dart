@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yourprojectname/Views/UserPages/TestSubPage1.dart';
+import 'package:yourprojectname/Views/UserPages/TestSubPage2.dart';
 
 class TestPage2 extends StatefulWidget {
   @override
