@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:minervaproject/Views/UserMainPages/TestPage1.dart';
-import 'package:minervaproject/Views/UserMainPages/TestPage2.dart';
+import 'package:yourprojectname/Views/UserMainPages/TestPage1.dart';
+import 'package:yourprojectname/Views/UserMainPages/TestPage2.dart';
 
 class TestHome extends StatefulWidget {
   @override
