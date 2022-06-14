@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ItemPageDetailView2 extends StatelessWidget {
-  final DocumentSnapshot mdkModel;
+  final DocumentSnapshot itModel;
 
   const ItemPageDetailView2({
     Key itkey,
@@ -24,7 +24,7 @@ class ItemPageDetailView2 extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(mdkModel.get('itemImageOne')),
+                  image: NetworkImage(itModel.get('itemImageOne')),
                   fit: BoxFit.cover)),
         ));
   }
