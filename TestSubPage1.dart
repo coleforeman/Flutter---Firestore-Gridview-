@@ -24,7 +24,7 @@ class ItemPageDetailView extends StatelessWidget {
         body: Container(
           decoration: BoxDecoration(
               image: DecorationImage(
-                  image: NetworkImage(mdkModel.get('itemImageOne')),
+                  image: NetworkImage(mdkModel.get('*Insert Name of Firestore Document Field With Firebase Storage Photo Downloadurl*')),
                   fit: BoxFit.cover)),
         ));
   }
