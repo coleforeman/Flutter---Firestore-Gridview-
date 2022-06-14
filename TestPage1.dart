@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:minervaproject/Views/UserMainPages/TestSubPage1.dart';
+import 'package:yourprojectname/Views/UserPages/TestSubPage1.dart';
 
 class TestPage1 extends StatefulWidget {
   @override
@@ -77,7 +77,7 @@ class _TestPageHomeState extends State<TestPage1>
                           .evaluate(AlwaysStoppedAnimation(anConMk.value))),
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
-                          .collection('ItemMakeup')
+                          .collection('*Insert your Firestore Collection Name Here*')
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -100,7 +100,7 @@ class _TestPageHomeState extends State<TestPage1>
                                             image: DecorationImage(
                                                 image: NetworkImage(snapshot
                                                     .data.docs[index]
-                                                    .get('itemImageOne')),
+                                                    .get('*Insert Name of Firestore Document Field With Firebase Storage Photo Downloadurl*')),
                                                 fit: BoxFit.cover))),
                                     onTap: () => Navigator.push(
                                         context,
