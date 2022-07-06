@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yourprojectname/Views/UserPages/TestSubPage1.dart';
+import 'package:*yourprojectname*/TestSubPage1.dart';
 
 class TestPage1 extends StatefulWidget {
   @override
@@ -9,8 +9,7 @@ class TestPage1 extends StatefulWidget {
 
 class _TestPageHomeState extends State<TestPage1>
     with SingleTickerProviderStateMixin {
-  AnimationController anConMk;
-  
+  late AnimationController anConMk;
 
   @override
   void initState() {
@@ -21,7 +20,7 @@ class _TestPageHomeState extends State<TestPage1>
     )..repeat();
   }
 
-  Animatable<Color> background = TweenSequence<Color>([
+  Animatable<Color?> background = TweenSequence<Color?>([
     TweenSequenceItem(
       weight: 1.0,
       tween: ColorTween(
@@ -53,7 +52,6 @@ class _TestPageHomeState extends State<TestPage1>
   ]);
 
   Widget build(BuildContext context) {
-   
     return AnimatedBuilder(
         animation: anConMk,
         builder: (context, child) {
@@ -77,11 +75,13 @@ class _TestPageHomeState extends State<TestPage1>
                           .evaluate(AlwaysStoppedAnimation(anConMk.value))),
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
-                          .collection('*Insert your Firestore Collection Name Here*')
-                          .snapshots(),
+                          .collection('ItemFashion')
+                          .snapshots()
+                          ,
+                          
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (!snapshot.hasData) {
+                        if (snapshot.data == null) {
                           return Center(child: CircularProgressIndicator());
                         } else
                           return GridView.count(
@@ -90,8 +90,8 @@ class _TestPageHomeState extends State<TestPage1>
                               crossAxisSpacing: 8,
                               mainAxisSpacing: 8,
                               crossAxisCount: 2,
-                              children: List.generate(snapshot.data.docs.length,
-                                  (index) {
+                              children: List.generate(
+                                  snapshot.data!.docs.length, (index) {
                                 return InkWell(
                                     child: Container(
                                         decoration: BoxDecoration(
@@ -99,8 +99,7 @@ class _TestPageHomeState extends State<TestPage1>
                                                 BorderRadius.circular(5),
                                             image: DecorationImage(
                                                 image: NetworkImage(snapshot
-                                                    .data.docs[index]
-                                                    .get('*Insert Name of Firestore Document Field With Firebase Storage Photo Downloadurl*')),
+                                                    .data!.docs[index]['itemImageOne']),
                                                 fit: BoxFit.cover))),
                                     onTap: () => Navigator.push(
                                         context,
@@ -108,14 +107,15 @@ class _TestPageHomeState extends State<TestPage1>
                                             builder: (context) =>
                                                 ItemPageDetailView(
                                                     mdkModel: snapshot
-                                                        .data.docs[index]))));
+                                                        .data!.docs[index]))));
                               }));
                       })));
         });
   }
-   @override
-        void dispose() {
-          anConMk.dispose();
-          super.dispose();
-        }
+
+  @override
+  void dispose() {
+    anConMk.dispose();
+    super.dispose();
+  }
 }
