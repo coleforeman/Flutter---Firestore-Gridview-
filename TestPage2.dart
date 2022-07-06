@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:yourprojectname/Views/UserPages/TestSubPage2.dart';
+import 'package:photoappviddemo/testsubpage2.dart';
 
 class TestPage2 extends StatefulWidget {
   @override
@@ -9,8 +9,7 @@ class TestPage2 extends StatefulWidget {
 
 class _TestPageHomeState2 extends State<TestPage2>
     with SingleTickerProviderStateMixin {
-  AnimationController anConMk2;
-  
+  late AnimationController anConMk2;
 
   @override
   void initState() {
@@ -21,7 +20,7 @@ class _TestPageHomeState2 extends State<TestPage2>
     )..repeat();
   }
 
-  Animatable<Color> background = TweenSequence<Color>([
+  Animatable<Color?> background = TweenSequence<Color?>([
     TweenSequenceItem(
       weight: 1.0,
       tween: ColorTween(
@@ -53,7 +52,6 @@ class _TestPageHomeState2 extends State<TestPage2>
   ]);
 
   Widget build(BuildContext context) {
-   
     return AnimatedBuilder(
         animation: anConMk2,
         builder: (context, child) {
@@ -77,7 +75,7 @@ class _TestPageHomeState2 extends State<TestPage2>
                           .evaluate(AlwaysStoppedAnimation(anConMk2.value))),
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
-                          .collection('*Insert your Firestore Collection Name Here*')
+                          .collection('ItemMakeup')
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -90,17 +88,17 @@ class _TestPageHomeState2 extends State<TestPage2>
                               crossAxisSpacing: 8,
                               mainAxisSpacing: 8,
                               crossAxisCount: 2,
-                              children: List.generate(snapshot.data.docs.length,
-                                  (index) {
+                              children: List.generate(
+                                  snapshot.data!.docs.length, (index) {
                                 return InkWell(
                                     child: Container(
                                         decoration: BoxDecoration(
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             image: DecorationImage(
-                                                image: NetworkImage(snapshot
-                                                    .data.docs[index]
-                                                    .get('*Insert Name of Firestore Document Field With Firebase Storage Photo Downloadurl*')),
+                                                image: NetworkImage(
+                                                    snapshot.data!.docs[index]
+                                                        ['itemImageOne']),
                                                 fit: BoxFit.cover))),
                                     onTap: () => Navigator.push(
                                         context,
@@ -108,14 +106,15 @@ class _TestPageHomeState2 extends State<TestPage2>
                                             builder: (context) =>
                                                 ItemPageDetailView2(
                                                     itModel: snapshot
-                                                        .data.docs[index]))));
+                                                        .data!.docs[index]))));
                               }));
                       })));
         });
   }
-   @override
-        void dispose() {
-          anConMk2.dispose();
-          super.dispose();
-        }
+
+  @override
+  void dispose() {
+    anConMk2.dispose();
+    super.dispose();
+  }
 }
