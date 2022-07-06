@@ -75,7 +75,7 @@ class _TestPageHomeState2 extends State<TestPage2>
                           .evaluate(AlwaysStoppedAnimation(anConMk2.value))),
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
-                          .collection('ItemMakeup')
+                          .collection('*collectionpath*')
                           .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
