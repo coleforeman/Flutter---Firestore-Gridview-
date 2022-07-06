@@ -76,9 +76,7 @@ class _TestPageHomeState extends State<TestPage1>
                   child: StreamBuilder(
                       stream: FirebaseFirestore.instance
                           .collection('ItemFashion')
-                          .snapshots()
-                          ,
-                          
+                          .snapshots(),
                       builder:
                           (context, AsyncSnapshot<QuerySnapshot> snapshot) {
                         if (snapshot.data == null) {
@@ -98,8 +96,9 @@ class _TestPageHomeState extends State<TestPage1>
                                             borderRadius:
                                                 BorderRadius.circular(5),
                                             image: DecorationImage(
-                                                image: NetworkImage(snapshot
-                                                    .data!.docs[index]['itemImageOne']),
+                                                image: NetworkImage(
+                                                    snapshot.data!.docs[index]
+                                                        ['itemImageOne']),
                                                 fit: BoxFit.cover))),
                                     onTap: () => Navigator.push(
                                         context,
