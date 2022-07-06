@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:*yourprojectname*/testpage1.dart';
-import 'package:*yourprojectname*/testpage2.dart';
+import 'package:*yourprojectname*/TestPage1.dart';
+import 'package:*yourprojectname*/TestPage2.dart';
 
 class TestHome extends StatefulWidget {
   @override
