@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:yourprojectname/Views/UserPages/TestPage1.dart';
-import 'package:yourprojectname/Views/UserPages/TestPage2.dart';
+import 'package:*yourprojectname*/testpage1.dart';
+import 'package:*yourprojectname*/testpage2.dart';
 
 class TestHome extends StatefulWidget {
   @override
   CreateHomeState createState() => CreateHomeState();
 }
 
-class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixin {
-  AnimationController anCon;
+class CreateHomeState extends State<TestHome>
+    with SingleTickerProviderStateMixin {
+  late AnimationController anCon;
   @override
   void initState() {
     super.initState();
@@ -18,7 +19,7 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
     )..repeat();
   }
 
-  Animatable<Color> background = TweenSequence<Color>([
+  Animatable<Color?> background = TweenSequence<Color?>([
     TweenSequenceItem(
       weight: 1.0,
       tween: ColorTween(
@@ -49,15 +50,11 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
     ),
   ]);
 
- 
-
   Widget build(BuildContext context) {
     return AnimatedBuilder(
         animation: anCon,
         builder: (context, child) {
           return Scaffold(
-             
-              //<=============================================================================================>
               appBar: AppBar(
                 centerTitle: true,
                 title: Icon(Icons.home_outlined),
@@ -71,7 +68,6 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
                   Colors.yellow,
                 ]))),
               ),
-              //<=============================================================================================>
               body: Container(
                 decoration: BoxDecoration(
                     color: background
@@ -79,14 +75,14 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
                 child: GridView.count(
                   primary: false,
                   padding: const EdgeInsets.all(20),
-                  crossAxisSpacing: 7, 
+                  crossAxisSpacing: 7,
                   mainAxisSpacing: 7,
                   crossAxisCount: 2,
                   children: <Widget>[
                     InkWell(
                       child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                              color: Colors.blue,
                               border: Border.all(
                                 color: Colors.white,
                               ),
@@ -110,7 +106,7 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
                     InkWell(
                       child: Container(
                           decoration: BoxDecoration(
-                             color: Colors.red,
+                              color: Colors.red,
                               border: Border.all(
                                 color: Colors.white,
                               ),
@@ -131,9 +127,9 @@ class CreateHomeState extends State<TestHome> with SingleTickerProviderStateMixi
                                 builder: (context) => TestPage2()));
                       },
                     ),
-                  
-                    
                   ],
                 ),
               ));
-        });}}
+        });
+  }
+}
